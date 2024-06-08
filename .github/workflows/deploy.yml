@@ -12,31 +12,32 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Build Project (Optional)
+      - name: Create and Deploy to Test1 Domain
         run: |
-          # Add your build steps here if needed
-          echo "Building project..."
-
-      - name: Deploy to GitHub Pages - Test1
-        run: |
+          mkdir -p Output
+          cp index.html Output/
           echo "test1.seniorblockchain.io" > Output/CNAME
+      - name: Deploy to GitHub Pages - Test1
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages-test1
-          folder: Output
-          clean: true
-          clean-exclude: |
-            .nojekyll
-            CNAME
+            branch: gh-pages-test1
+            folder: Output
+            clean: true
+            clean-exclude: |
+              .nojekyll
+              CNAME
 
-      - name: Deploy to GitHub Pages - Test2
+      - name: Create and Deploy to Test2 Domain
         run: |
+          mkdir -p Output
+          cp index.html Output/
           echo "test2.seniorblockchain.io" > Output/CNAME
+      - name: Deploy to GitHub Pages - Test2
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages-test2
-          folder: Output
-          clean: true
-          clean-exclude: |
-            .nojekyll
-            CNAME
+            branch: gh-pages-test2
+            folder: Output
+            clean: true
+            clean-exclude: |
+              .nojekyll
+              CNAME
