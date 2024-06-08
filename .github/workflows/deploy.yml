@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Pages for Test1 Domain
+        run: echo "test1.seniorblockchain.io" > index.html
+
+      - name: Deploy to GitHub Pages - Test1
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages-test1
+          folder: .
+          clean: true
+          clean-exclude: |
+            .nojekyll
+            CNAME
+
+      - name: Setup Pages for Test2 Domain
+        run: echo "test2.seniorblockchain.io" > index.html
+
+      - name: Deploy to GitHub Pages - Test2
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages-test2
+          folder: .
+          clean: true
+          clean-exclude: |
+            .nojekyll
+            CNAME
