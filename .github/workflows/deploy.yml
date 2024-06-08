@@ -13,41 +13,25 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Publish (Angor)
-        run: dotnet publish src/Angor/Server/Angor.Server.csproj -f net8.0 --configuration Release --output Output
-
-      - name: Copy index.html to 404.html
-        run: cp Output/wwwroot/index.html Output/wwwroot/404.html
-
-      - name: Add .nojekyll file
-        run: touch Output/wwwroot/.nojekyll
-
-      - name: Create CNAME for Test1
-        run: echo "test1.seniorblockchain.io" > Output/wwwroot/CNAME
-
       - name: Deploy to GitHub Pages - Test1
+        run: |
+          echo "test1.seniorblockchain.io" > CNAME
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages-test1
-          folder: Output/wwwroot
+          folder: .
           clean: true
           clean-exclude: |
             .nojekyll
             CNAME
 
-      - name: Create CNAME for Test2
-        run: echo "test2.seniorblockchain.io" > Output/wwwroot/CNAME
-
       - name: Deploy to GitHub Pages - Test2
+        run: |
+          echo "test2.seniorblockchain.io" > CNAME
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages-test2
-          folder: Output/wwwroot
+          folder: .
           clean: true
           clean-exclude: |
             .nojekyll
