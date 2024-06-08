@@ -8,18 +8,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Build Project (Optional)
+        run: |
+          # Add your build steps here if needed
+          echo "Building project..."
+
       - name: Deploy to GitHub Pages - Test1
         run: |
-          echo "test1.seniorblockchain.io" > CNAME
+          echo "test1.seniorblockchain.io" > Output/CNAME
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages-test1
-          folder: .
+          folder: Output
           clean: true
           clean-exclude: |
             .nojekyll
@@ -27,11 +31,11 @@ jobs:
 
       - name: Deploy to GitHub Pages - Test2
         run: |
-          echo "test2.seniorblockchain.io" > CNAME
+          echo "test2.seniorblockchain.io" > Output/CNAME
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages-test2
-          folder: .
+          folder: Output
           clean: true
           clean-exclude: |
             .nojekyll
