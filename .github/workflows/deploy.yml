@@ -8,12 +8,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Setup Pages for Test1 Domain
-        run: echo "test1.seniorblockchain.io" > index.html
+        run: echo "test1.seniorblockchain.io" > CNAME
 
       - name: Deploy to GitHub Pages - Test1
         uses: JamesIves/github-pages-deploy-action@v4
@@ -26,7 +27,7 @@ jobs:
             CNAME
 
       - name: Setup Pages for Test2 Domain
-        run: echo "test2.seniorblockchain.io" > index.html
+        run: echo "test2.seniorblockchain.io" > CNAME
 
       - name: Deploy to GitHub Pages - Test2
         uses: JamesIves/github-pages-deploy-action@v4
